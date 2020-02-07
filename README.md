@@ -4,7 +4,7 @@ This package allows you to create an **store** file structure with one command.
 
 It helps you to enforce a standard for your React's apps using Context API for its state management.
 
-This package must be used with our custom [react-context-manager](#) package to connect and manage the store in your app.
+This package must be used with our custom [react-context-manager](https://github.com/talpor/react-context-manager) package to connect and manage the store in your app.
 
 ## Installation
 
@@ -12,7 +12,7 @@ To add `react-context-manager-cli` you need to install it globally.
 
 With **npm**:
 
-```
+```console
 npm install -g react-context-manager-cli
 ```
 
@@ -62,7 +62,9 @@ myApp
 
 To use this package, run
 
-```react-context-manager-cli```
+```console 
+react-context-manager-cli
+```
 
 We know the name is quite large, so you can also use the shorthand```rcmc```
 
@@ -71,7 +73,7 @@ We know the name is quite large, so you can also use the shorthand```rcmc```
 This command is used to create a **Store** file structure for the app. The **init** command will create for you a **store** folder inside /src/. Also, it will create an **index.[js|ts]** file. The file type will be determined by the index file of your project located at the **/src/** folder.
 
 ***index.ts initial example***
-```jsx=
+```jsx
 /** This is a auto-generated file, please do not modify it*/
 import { GlobalStore, initContext, UnBoundActions } from 'react-context-manager';
 
@@ -97,7 +99,7 @@ Before the structure creation, the client will ask you if you want an empty acti
 
 
 ***actions.ts example***
-```jsx=
+```jsx
 import { UnBoundActions } from 'react-context-manager';
 
 import { IStore } from '../index';
@@ -124,7 +126,7 @@ export const userActions: IUserActions = {
 ```
 
 ***store.ts example***
-```jsx=
+```jsx
 export interface IUserStore {}
 
 export const userStore: IUserStore = {}
@@ -133,7 +135,7 @@ export const userStore: IUserStore = {}
 After all the elements had been created, the CLI would ask you if you want to overwrite your ***index.[ts|js]*** to reflect the updated changes
 
 ***index.ts example regenerated***
-```jsx=
+```jsx
 /** This is a auto-generated file, please do not modify it*/
 import { GlobalStore, initContext, UnBoundActions } from 'react-context-manager';
 
