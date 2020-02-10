@@ -18,7 +18,7 @@ export const emptyActionsJs = function(name) {
 };
 
 export const emptyActionsTs = function(name) {
-  return `import { UnBoundScope } from 'react-context-manager';
+  return `import { UnBoundScope } from '@talpor/react-context-manager';
 
   import { IStore } from '../index';
 
@@ -108,7 +108,7 @@ export const crudActionsJs = function(name) {
 };
 
 export const crudActionsTs = function(name) {
-  return `import { UnBoundScope } from 'react-context-manager';
+  return `import { UnBoundScope } from '@talpor/react-context-manager';
   import { IStore } from '../index';
 
   export interface I${capFirst(name)}Actions extends UnBoundScope<IStore> {

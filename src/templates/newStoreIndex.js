@@ -1,6 +1,6 @@
 export const indexJs = function(imports, store, actions) {
     return `/** This is a auto-generated file, please do not modify it */
-import { initContext } from 'react-context-manager';
+import { initContext } from '@talpor/react-context-manager';
 
 ${imports}
 
@@ -23,7 +23,7 @@ export const indexTs = function(
     actionsInterface
 ) {
     return `/** This is a auto-generated file, please do not modify it */
-import { GlobalStore, initContext, UnBoundActions } from 'react-context-manager';
+import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
 
 ${imports}
 

@@ -8,12 +8,12 @@ This package must be used with our custom [react-context-manager](https://github
 
 ## Installation
 
-To add `react-context-manager-cli` you need to install it globally.
+To add `@talpor/react-context-manager-cli` you need to install it globally.
 
 With **npm**:
 
 ```console
-npm install -g react-context-manager-cli
+npm install -g @talpor/react-context-manager-cli
 ```
 
 **Note:** React Context Manager CLI works with any React Project that has [react-context-manager](#) installed.
@@ -62,7 +62,7 @@ myApp
 
 To use this package, run
 
-```console 
+```console
 react-context-manager-cli
 ```
 
@@ -75,7 +75,7 @@ This command is used to create a **Store** file structure for the app. The **ini
 ***index.ts initial example***
 ```jsx
 /** This is a auto-generated file, please do not modify it*/
-import { GlobalStore, initContext, UnBoundActions } from 'react-context-manager';
+import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
 
 export interface IStore extends GlobalStore {}
 
@@ -100,7 +100,7 @@ Before the structure creation, the client will ask you if you want an empty acti
 
 ***actions.ts example***
 ```jsx
-import { UnBoundActions } from 'react-context-manager';
+import { UnBoundScope } from '@talpor/react-context-manager';
 
 import { IStore } from '../index';
 
@@ -137,7 +137,7 @@ After all the elements had been created, the CLI would ask you if you want to ov
 ***index.ts example regenerated***
 ```jsx
 /** This is a auto-generated file, please do not modify it*/
-import { GlobalStore, initContext, UnBoundActions } from 'react-context-manager';
+import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
 
 import { userStore, IUserStore } from "./user/store"
 import { userActions, IUserActions } from "./user/actions"

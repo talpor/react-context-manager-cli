@@ -7,6 +7,10 @@
   "directories": {
     "lib": "lib"
   },
+  "authors": [
+    "Fernando Galindez <fgalindez@talpor.com> (https://github.com/fergalindez)",
+    "Juan Perozo <jperozo@talpor.com> (https://github.com/jperozo)",
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
