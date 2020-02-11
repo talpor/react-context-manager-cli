@@ -19,28 +19,10 @@ export async function init(args) {
     if (foundRcm) {
       const foundSrc = findFile('src', paths.rootPath);
       const foundStore = foundSrc && findFile('store', paths.srcPath);
-      if (foundSrc && foundStore) {
+      if (foundSrc) {
         const type = foundSrc ? setType() : 'js';
         const options = setPrettierOptions(type);
-
-        if (!foundSrc && !foundStore) {
-          fs.mkdirSync(paths.srcPath);
-          fs.mkdirSync(paths.storePath);
-          let text =
-            type === 'js' ? indexJs('', '', '') : indexTs('', '', '', '', '');
-
-          text = prettier.format(text, options);
-
-          fs.writeFileSync(`src/store/index.${type}`, text);
-
-          console.log(`
-      ------- SUCCESSFULLY CREATED ------\n
-      - folder: ${chalk.blueBright.bold('/src/')}\n
-      - folder: ${chalk.blueBright.bold('/store/')}\n
-      - file: ${chalk.blueBright.bold('index.')}${chalk.blueBright.bold(type)}\n
-      -----------------------------------\n
-      `);
-        } else if (foundSrc && !foundStore) {
+        if (!foundStore) {
           fs.mkdirSync(paths.storePath);
           let text =
             type === 'js' ? indexJs('', '', '') : indexTs('', '', '', '', '');

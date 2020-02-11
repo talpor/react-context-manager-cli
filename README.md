@@ -16,7 +16,7 @@ With **npm**:
 npm install -g @talpor/react-context-manager-cli
 ```
 
-**Note:** React Context Manager CLI works with any React Project that has [react-context-manager](#) installed.
+**Note:** React Context Manager CLI works with any React Project that has [react-context-manager](https://github.com/talpor/react-context-manager) installed.
 
 ## Basic Project Structure
 

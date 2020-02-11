@@ -16,7 +16,7 @@ export const findRcm = async function() {
   const packagejson = fs.readFileSync('package.json', 'utf8');
   if (JSON.parse(packagejson).dependencies) {
     const foundRcm = Object.keys(JSON.parse(packagejson).dependencies).some(
-      dep => dep === 'react-context-manager'
+      dep => dep === '@talpor/react-context-manager'
     );
     if (!foundRcm) {
       const question = await inquirer
@@ -26,12 +26,12 @@ export const findRcm = async function() {
             default: true,
             name: 'install',
             message: `We detect that you do not have ${chalk.cyanBright.bold(
-              'react-context-manager'
+              '@talpor/react-context-manager'
             )} installed in your project. This is important to assure that the files that have been generated works.\n
 Please run "${chalk.cyanBright.bold(
-              'yarn add react-context-manager'
+              'yarn add @talpor/react-context-manager'
             )}" or "${chalk.cyanBright.bold(
-              'npm install --save react-context-manager'
+              'npm install --save @talpor/react-context-manager'
             )}" to add it to your package.json.\n
 ${chalk.greenBright.bold('Do you want to continue the process?')}`
           }
