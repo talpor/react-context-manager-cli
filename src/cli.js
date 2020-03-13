@@ -3,6 +3,7 @@
 import minimist from 'minimist';
 
 import { createStore } from './routes/createSubStore';
+import { createComponent } from './routes/createComponent';
 import { help } from './routes/help';
 import { init } from './routes/createGlobalStore';
 import { regenerateIndex } from './routes/generateIndex';
@@ -40,6 +41,10 @@ export async function cli(argsArray) {
 
     case 'remove-store':
       removeStore(args);
+      break;
+
+    case 'create-component':
+      createComponent(args);
       break;
 
     case 'generate-store-index':

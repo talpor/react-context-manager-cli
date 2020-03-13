@@ -120,8 +120,6 @@ export const generateIndex = function(type, options) {
           }
         });
 
-        console.log(actionsInterface, storeInterface);
-
         let text =
           type === 'js'
             ? indexJs(importsToWrite, storeToWrite, actionsToWrite)

@@ -1,6 +1,7 @@
 const rootPath = './';
 const srcPath = './src';
 const storePath = './src/store';
+const componentsPath = './src/components';
 
-const paths = { rootPath, srcPath, storePath };
+const paths = { componentsPath, rootPath, srcPath, storePath };
 export default paths;

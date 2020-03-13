@@ -174,6 +174,53 @@ After the folders have been removed from the project, the client will ask you if
 
 This command allows you to regenerate the **index.[js|ts]** of your store. if you added one or more folders manually, this command will recognize them and make the imports and generate your store and actions objects.
 
+### create-component [name1 name2 ...]
+
+This command generates a component file structure inside the components folder. **create-component user** will create a folder named **user** with **user.[jsx|tsx]** and **index.[js|ts]**. Also, it will create a **/__test__/** folder with a **user.spec.[js|ts]**.
+
+Before the structure creation, the client will ask you if you want a *Class Component* file or a *Function Component* file. After that, you can select which stores you want to link to your new components.
+
+
+***User.tsx example -  Class Component connected to user store***
+```jsx
+import React from 'react';
+import { ctx } from '../../store';
+
+import { mapContextToProps } from '@talpor/react-context-manager';
+
+class UserComponent extends React.Component<any, any> {
+  render() {
+    const { actions, store } = this.props;
+    return <div className="User"></div>;
+  }
+}
+
+const User = mapContextToProps(ctx)(UserComponent)('user');
+export { User };
+```
+
+***User.tsx example -  Function Component connected to user store***
+```jsx
+import React, { useContext } from 'react';
+import { ctx } from '../../store';
+
+function User() {
+  const store = useContext(ctx.store);
+  const actions = useContext(ctx.actions);
+
+  return <div className="User"></div>;
+}
+
+export { User };
+```
+
+***index.ts example regenerated***
+```jsx
+import { User } from './User';
+
+export default User;
+```
+
 ### rcmc --help
 
 ### rcmc --version
@@ -188,3 +235,7 @@ If the project has a **.prettierrc** file in the root directory, **react-context
     semi: true
 };
 ```
+
+## Authors
+- Juan Perozo <jperozo@talpor.com> (https://github.com/jperozo)
+- Fernando Galindez <fgalindez@talpor.com> (https://github.com/fergalindez)

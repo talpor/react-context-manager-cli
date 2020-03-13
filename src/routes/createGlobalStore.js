@@ -19,6 +19,7 @@ export async function init(args) {
     if (foundRcm) {
       const foundSrc = findFile('src', paths.rootPath);
       const foundStore = foundSrc && findFile('store', paths.srcPath);
+      const foundComponents = foundSrc && findFile('components', paths.srcPath);
       if (foundSrc) {
         const type = foundSrc ? setType() : 'js';
         const options = setPrettierOptions(type);
@@ -44,6 +45,22 @@ export async function init(args) {
             )}" folder is already created in this project.`
           );
         }
+        if (!foundComponents) {
+          fs.mkdirSync(paths.componentsPath);
+
+          console.log(`
+      ------- SUCCESSFULLY CREATED ------\n
+      - folder: ${chalk.blueBright.bold('/components/')}\n
+      -----------------------------------\n
+      `);
+        } else {
+          console.log(
+            `"${chalk.redBright.bold(
+              'Components'
+            )}" folder is already created in this project.`
+          );
+        }
+
       } else {
         console.log(
           `${chalk.redBright.bold(
