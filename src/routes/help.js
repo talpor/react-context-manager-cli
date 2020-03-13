@@ -17,6 +17,9 @@ ${chalk.greenBright.bold('rcmc [command] <options>')}
   ${chalk.blueBright.bold(
       'generate-store-index'
   )} .......... regenerate store index
+  ${chalk.blueBright.bold('create-component')} ${chalk.yellowBright.bold(
+        'names'
+    )} ........ create class or function components
   ${chalk.blueBright.bold(
       'version'
   )} ....................... show package version
