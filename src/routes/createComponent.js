@@ -8,12 +8,18 @@ import {
   classComponentTs,
   functionComponent
 } from '../templates/newComponent';
+import {
+  classComponentRnJs,
+  classComponentRnTs,
+  functionComponentRn
+} from '../templates/newComponentRn';
 import { indexJs } from '../templates/newComponentIndex';
 import {
   asyncForEach,
   capFirst,
   findFile,
   findRcm,
+  setFramework,
   setType,
   setPrettierOptions,
 } from '../utils/helpers';
@@ -32,6 +38,7 @@ export async function createComponent(args) {
       const foundComponents = foundSrc && findFile('components', paths.srcPath);
       if (foundSrc && foundComponents) {
         const type = setType();
+        const framework = setFramework();
         const options = setPrettierOptions(type);
         const foundModule = foundPkg && findFile(name, paths.storePath);
         await asyncForEach(args._.slice(1), async name => {
@@ -83,21 +90,32 @@ export async function createComponent(args) {
                       fs.mkdirSync(`${paths.componentsPath}/${capFirst(name)}`);
                       fs.mkdirSync(`${paths.componentsPath}/${capFirst(name)}/__tests__`);
                       let componentText;
-                      if (template.template === 'class component') {
-                        componentText =
-                          type === 'js'
-                            ? classComponentJs(name, dirString)
-                            : classComponentTs(name, dirString);
+                      if (framework === 'react') {
+                        if (template.template === 'class component') {
+                          componentText =
+                            type === 'js'
+                              ? classComponentJs(name, dirString)
+                              : classComponentTs(name, dirString);
+                        } else {
+                          componentText = functionComponent(name, dirString);
+                        }
                       } else {
-                        componentText = functionComponent(name, dirString);
+                        if (template.template === 'class component') {
+                          componentText =
+                            type === 'js'
+                              ? classComponentRnJs(name, dirString)
+                              : classComponentRnTs(name, dirString);
+                        } else {
+                          componentText = functionComponentRn(name, dirString);
+                        }
                       }
-                      let indexText = indexJs(name);
-                      componentText = prettier.format(componentText, options);
-                      indexText = prettier.format(indexText, options);
-                      fs.writeFileSync(
-                        `src/components/${capFirst(name)}/${capFirst(name)}.${type}x`,
-                        componentText
-                      );
+                        let indexText = indexJs(name);
+                        componentText = prettier.format(componentText, options);
+                        indexText = prettier.format(indexText, options);
+                        fs.writeFileSync(
+                          `src/components/${capFirst(name)}/${capFirst(name)}.${type}x`,
+                          componentText
+                        );
                       fs.writeFileSync(
                         `src/components/${capFirst(name)}/index.${type}`,
                         indexText

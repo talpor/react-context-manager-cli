@@ -6,6 +6,8 @@ It helps you to enforce a standard for your React's apps using Context API for i
 
 This package must be used with our custom [react-context-manager](https://github.com/talpor/react-context-manager) package to connect and manage the store in your app.
 
+If you want to follow a tutorial, we recommend this [post](https://medium.com/swlh/handle-the-state-of-reactjs-applications-in-a-simple-and-efficient-way-225975562f33?source=friends_link&sk=04bff2674ed9a63d799e97327af3bf55)
+
 ## Installation
 
 To add `@talpor/react-context-manager-cli` you need to install it globally.
@@ -70,7 +72,7 @@ We know the name is quite large, so you can also use the shorthand```rcmc```
 
 ### rcmc init
 
-This command is used to create a **Store** file structure for the app. The **init** command will create for you a **store** folder inside /src/. Also, it will create an **index.[js|ts]** file. The file type will be determined by the index file of your project located at the **/src/** folder.
+This command is used to create a **Store** file structure for the app. The **init** command will create for you a **store** and **component** folders inside /src/. Also, it will create an store **index.[js|ts]** file. The file type (JS or TS) will be determined if a *Typescript* dependency or devDependency exists in the package.json of your project.
 
 ***index.ts initial example***
 ```jsx
@@ -220,6 +222,8 @@ import { User } from './User';
 
 export default User;
 ```
+
+If you are building a ***React Native*** project, your <div> tags will be replaced for <View> tags, importing them from the 'react-native' package.
 
 ### rcmc --help
 

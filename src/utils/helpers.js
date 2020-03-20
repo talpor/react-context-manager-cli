@@ -52,12 +52,30 @@ ${chalk.greenBright.bold('Do you want to continue the process?')}`
 };
 
 export const setType = function() {
-  const foundIndex = fs
-    .readdirSync(paths.srcPath)
-    .find(file => file.startsWith('index') && file !== 'index.css');
-  let type = foundIndex && foundIndex.split('.')[1];
-  type = type === 'jsx' || type === 'tsx' ? type.slice(0, 2) : type;
-  return type ? type : 'js';
+  const packagejson = fs.readFileSync('package.json', 'utf8');
+  let foundTs = false;
+  if (JSON.parse(packagejson).dependencies) {
+    foundTs = Object.keys(JSON.parse(packagejson).dependencies).some(
+      dep => dep === 'typescript'
+    );
+  }
+  if (!foundTs && JSON.parse(packagejson).devDependencies) {
+    foundTs = Object.keys(JSON.parse(packagejson).devDependencies).some(
+      dep => dep === 'typescript'
+    );
+  }
+  return !foundTs ? 'js' : 'ts';
+};
+
+export const setFramework = function() {
+  const packagejson = fs.readFileSync('package.json', 'utf8');
+  let foundRn = null;
+  if (JSON.parse(packagejson).dependencies) {
+    foundRn = Object.keys(JSON.parse(packagejson).dependencies).some(
+      dep => dep === 'react-native'
+    );
+  }
+  return !foundRn ? 'react' : 'react-native';
 };
 
 export const setPrettierOptions = function(type) {
