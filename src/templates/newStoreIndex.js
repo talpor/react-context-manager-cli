@@ -23,14 +23,14 @@ export const indexTs = function(
     actionsInterface
 ) {
     return `/** This is a auto-generated file, please do not modify it */
-import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
+import { GlobalStore, initContext, Modifiers } from '@talpor/react-context-manager';
 
 ${imports}
 
 export interface IStore extends GlobalStore {${storeInterface}
 }
 
-export interface IActions extends UnBoundActions<IStore> {${actionsInterface}
+export interface IActions extends Modifiers<IStore> {${actionsInterface}
 }
 
 const store: IStore = {${store}

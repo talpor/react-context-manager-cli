@@ -18,11 +18,11 @@ export const emptyActionsJs = function(name) {
 };
 
 export const emptyActionsTs = function(name) {
-  return `import { UnBoundScope } from '@talpor/react-context-manager';
+  return `import { Scope } from '@talpor/react-context-manager';
 
   import { IStore } from '../index';
 
-  export interface I${capFirst(name)}Actions extends UnBoundScope<IStore> {
+  export interface I${capFirst(name)}Actions extends Scope<IStore> {
   my${name[0].toUpperCase() +
     name.slice(1)}Action: (state: IStore) => () => IStore;
   /** Add your others ${name.toUpperCase()} actions types here */
@@ -108,10 +108,10 @@ export const crudActionsJs = function(name) {
 };
 
 export const crudActionsTs = function(name) {
-  return `import { UnBoundScope } from '@talpor/react-context-manager';
+  return `import { Scope } from '@talpor/react-context-manager';
   import { IStore } from '../index';
 
-  export interface I${capFirst(name)}Actions extends UnBoundScope<IStore> {
+  export interface I${capFirst(name)}Actions extends Scope<IStore> {
     create${capFirst(name)}Action: (state: IStore) => () => IStore;
     get${capFirst(name)}Action: (state: IStore) => () => IStore;
     list${capFirst(name)}Action: (state: IStore) => () => IStore;

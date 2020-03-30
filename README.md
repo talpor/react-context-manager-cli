@@ -77,11 +77,11 @@ This command is used to create a **Store** file structure for the app. The **ini
 ***index.ts initial example***
 ```jsx
 /** This is a auto-generated file, please do not modify it*/
-import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
+import { GlobalStore, initContext, Modifiers } from '@talpor/react-context-manager';
 
 export interface IStore extends GlobalStore {}
 
-export interface IActions extends UnBoundActions<IStore> {}
+export interface IActions extends Modifiers<IStore> {}
 
 const store: IStore = {}
 
@@ -102,11 +102,11 @@ Before the structure creation, the client will ask you if you want an empty acti
 
 ***actions.ts example***
 ```jsx
-import { UnBoundScope } from '@talpor/react-context-manager';
+import { Scope } from '@talpor/react-context-manager';
 
 import { IStore } from '../index';
 
-export interface IUserActions extends UnBoundScope<IStore> {
+export interface IUserActions extends Scope<IStore> {
   userAction: (state: IStore) => () => IStore;
   /** Add your others USER actions types here */
 }
@@ -139,7 +139,7 @@ After all the elements had been created, the CLI would ask you if you want to ov
 ***index.ts example regenerated***
 ```jsx
 /** This is a auto-generated file, please do not modify it*/
-import { GlobalStore, initContext, UnBoundActions } from '@talpor/react-context-manager';
+import { GlobalStore, initContext, Modifiers } from '@talpor/react-context-manager';
 
 import { userStore, IUserStore } from "./user/store"
 import { userActions, IUserActions } from "./user/actions"
