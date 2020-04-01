@@ -95,7 +95,7 @@ export { actions, ctx, store };
 
 ### create-store [name1 name2 ...]
 
-This command generates a complete sub-store file structure inside the store folder. **create-store user** will create a folder named **user** with **actions.[js|ts]**, **store.[js|ts]** and **mocks.[js|ts]**. Also, it will create a **/__test__/** folder with a **userStore.spec.[js|ts]**.
+This command generates a complete sub-store file structure inside the store folder. **create-store user** will create a folder named **user** with **actions.[js|ts]** and  **store.[js|ts]**. Also, it will create a **/__test__/** folder with a **userStore.spec.[js|ts]** and **mocks.[js|ts]**.
 
 Before the structure creation, the client will ask you if you want an empty actions file or a *CRUD* actions file. The last one, will create a file with generic ***CREATE***, ***GET***, ***LIST***, ***UPDATE*** and ***DELETE*** actions for this sub-store.
 

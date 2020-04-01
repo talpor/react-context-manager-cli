@@ -76,7 +76,7 @@ export async function createStore(args) {
                     actionsText
                   );
                   fs.writeFileSync(
-                    `src/store/${name}/mocks.${type}`,
+                    `src/store/${name}/__tests__/mocks.${type}`,
                     `export const ${name}Mock = {}`
                   );
                   fs.writeFileSync(

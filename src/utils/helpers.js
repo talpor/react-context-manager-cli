@@ -114,15 +114,24 @@ export const generateIndex = function(type, options) {
         let actionsInterface = '';
 
         fs.readdirSync(paths.storePath).forEach(folder => {
-          if (!folder.startsWith('index') && !folder.startsWith('.')) {
+          if (
+            fs.lstatSync(`${paths.storePath}/${folder}`).isDirectory() &&
+            !folder.startsWith('index') &&
+            !folder.startsWith('.') &&
+            !folder.startsWith('mocks')
+          ) {
             importsToWrite =
               type === 'js'
                 ? `${importsToWrite || ''}
           import { ${folder}Store } from './${folder}/store';
           import { ${folder}Actions } from './${folder}/actions';`
                 : `${importsToWrite || ''}
-          import { ${folder}Store, I${capFirst(folder)}Store } from './${folder}/store';
-          import { ${folder}Actions, I${capFirst(folder)}Actions } from './${folder}/actions';`;
+          import { ${folder}Store, I${capFirst(
+                    folder
+                  )}Store } from './${folder}/store';
+          import { ${folder}Actions, I${capFirst(
+                    folder
+                  )}Actions } from './${folder}/actions';`;
 
             storeToWrite = `${storeToWrite}
     ${folder}: ${folder}Store,`;

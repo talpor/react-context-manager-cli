@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import {
   findFile,
   findRcm,
