@@ -206,7 +206,7 @@ export { User };
 import React, { useContext } from 'react';
 import { ctx } from '../../store';
 
-function User() {
+const User = () => {
   const store = useContext(ctx.store);
   const actions = useContext(ctx.actions);
 

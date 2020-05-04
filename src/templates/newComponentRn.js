@@ -63,7 +63,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { ctx } from '../../store';
 
-function ${capFirst(name)}() {
+const ${capFirst(name)} = () => {
   const store = useContext(ctx.store);
   const actions = useContext(ctx.actions);
 

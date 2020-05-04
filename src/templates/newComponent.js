@@ -44,7 +44,7 @@ export const functionComponent = function(name) {
   return `import React, { useContext } from 'react';
 import { ctx } from '../../store';
 
-function ${capFirst(name)}() {
+const ${capFirst(name)} = () => {
   const store = useContext(ctx.store);
   const actions = useContext(ctx.actions);
 
