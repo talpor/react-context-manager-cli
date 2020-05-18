@@ -7,16 +7,16 @@ import prettier from 'prettier';
 import paths from './paths';
 import { indexJs, indexTs } from '../templates/newStoreIndex';
 
-export const findFile = function(fileName, path) {
-  const found = fs.readdirSync(path).some(file => file === fileName);
+export const findFile = function (fileName, path) {
+  const found = fs.readdirSync(path).some((file) => file.contains(fileName));
   return found;
 };
 
-export const findRcm = async function() {
+export const findRcm = async function () {
   const packagejson = fs.readFileSync('package.json', 'utf8');
   if (JSON.parse(packagejson).dependencies) {
     const foundRcm = Object.keys(JSON.parse(packagejson).dependencies).some(
-      dep => dep === '@talpor/react-context-manager'
+      (dep) => dep === '@talpor/react-context-manager'
     );
     if (!foundRcm) {
       const question = await inquirer
@@ -33,10 +33,10 @@ Please run "${chalk.cyanBright.bold(
             )}" or "${chalk.cyanBright.bold(
               'npm install --save @talpor/react-context-manager'
             )}" to add it to your package.json.\n
-${chalk.greenBright.bold('Do you want to continue the process?')}`
-          }
+${chalk.greenBright.bold('Do you want to continue the process?')}`,
+          },
         ])
-        .then(answer => {
+        .then((answer) => {
           if (answer.install) {
             return true;
           } else {
@@ -51,47 +51,50 @@ ${chalk.greenBright.bold('Do you want to continue the process?')}`
   }
 };
 
-export const setType = function() {
+export const setType = function () {
   const packagejson = fs.readFileSync('package.json', 'utf8');
   let foundTs = false;
   if (JSON.parse(packagejson).dependencies) {
     foundTs = Object.keys(JSON.parse(packagejson).dependencies).some(
-      dep => dep === 'typescript'
+      (dep) => dep === 'typescript'
     );
   }
   if (!foundTs && JSON.parse(packagejson).devDependencies) {
     foundTs = Object.keys(JSON.parse(packagejson).devDependencies).some(
-      dep => dep === 'typescript'
+      (dep) => dep === 'typescript'
     );
   }
   return !foundTs ? 'js' : 'ts';
 };
 
-export const setFramework = function() {
+export const setFramework = function () {
   const packagejson = fs.readFileSync('package.json', 'utf8');
   let foundRn = null;
   if (JSON.parse(packagejson).dependencies) {
     foundRn = Object.keys(JSON.parse(packagejson).dependencies).some(
-      dep => dep === 'react-native'
+      (dep) => dep === 'react-native'
     );
   }
   return !foundRn ? 'react' : 'react-native';
 };
 
-export const setPrettierOptions = function(type) {
+export const setPrettierOptions = function (type) {
   const foundPrettier = findFile('.prettierrc', paths.rootPath);
+  const foundPrettierJs = findFile('.prettierrc.js', paths.rootPath);
   let options = foundPrettier
     ? JSON.parse(fs.readFileSync('.prettierrc', 'utf8'))
+    : foundPrettierJs
+    ? fs.readFileSync('.prettierrc.js')
     : {
         singleQuote: true,
         tabWidth: 2,
-        semi: true
+        semi: true,
       };
-  options.parser = type === 'js' ? 'babel' : 'typescript';
+  options.parser = type === 'js' ? 'babel' : 'babel-ts';
   return options;
 };
 
-export const generateIndex = function(type, options) {
+export const generateIndex = function (type, options) {
   type = type || setType();
   options = options || setPrettierOptions(type);
   inquirer
@@ -102,10 +105,10 @@ export const generateIndex = function(type, options) {
         name: 'overwrite',
         message: chalk.cyanBright.bold(
           'Do you want to overwrite your index of your Store?'
-        )
-      }
+        ),
+      },
     ])
-    .then(answer => {
+    .then((answer) => {
       if (answer.overwrite) {
         let actionsToWrite = '';
         let storeToWrite = '';
@@ -113,7 +116,7 @@ export const generateIndex = function(type, options) {
         let storeInterface = '';
         let actionsInterface = '';
 
-        fs.readdirSync(paths.storePath).forEach(folder => {
+        fs.readdirSync(paths.storePath).forEach((folder) => {
           if (
             fs.lstatSync(`${paths.storePath}/${folder}`).isDirectory() &&
             !folder.startsWith('index') &&
@@ -170,13 +173,13 @@ export const generateIndex = function(type, options) {
     });
 };
 
-export const name = msn => {
+export const name = (msn) => {
   console.log(
     chalk.cyanBright(
       figlet.textSync(msn, {
         font: 'ANSI Shadow',
         horizontalLayout: 'default',
-        verticalLayout: 'default'
+        verticalLayout: 'default',
       })
     )
   );
@@ -188,6 +191,6 @@ export async function asyncForEach(array, callback) {
   }
 }
 
-export const capFirst = name => {
+export const capFirst = (name) => {
   return name[0].toUpperCase() + name.slice(1);
 };

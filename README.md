@@ -231,7 +231,7 @@ If you are building a ***React Native*** project, your <div> tags will be replac
 
 ## We use Prettier!
 
-If the project has a **.prettierrc** file in the root directory, **react-context-manager-cli** would use these options to format all the generated files. If you don't have prettier installed the package would use these settings to format the files:
+If the project has a **.prettierrc** file or **.prettierrc.js** file in the root directory, **react-context-manager-cli** would use these options to format all the generated files. If you don't have prettier installed the package would use these settings to format the files:
 ```
 {
     singleQuote: true,
