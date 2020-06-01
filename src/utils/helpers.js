@@ -8,7 +8,7 @@ import paths from './paths';
 import { indexJs, indexTs } from '../templates/newStoreIndex';
 
 export const findFile = function (fileName, path) {
-  const found = fs.readdirSync(path).some((file) => file.contains(fileName));
+  const found = fs.readdirSync(path).some(file => file === fileName);
   return found;
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@talpor/react-context-manager-cli",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "This package allows you to create an /store/ file structure with one command along with react-context-manager",
   "repository": "https://github.com/talpor/react-context-manager-cli",
   "main": "index.js",
@@ -38,7 +38,7 @@
     "figlet": "^1.2.4",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.3",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "prettier": "^2.0.5"
   }
 }
