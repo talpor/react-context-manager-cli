@@ -1,6 +1,6 @@
 # React Context Manager CLI
 
-This package allows you to create an **store** file structure with one command.
+This package allows you to create a **store** file structure with one command.
 
 It helps you to enforce a standard for your React's apps using Context API for its state management.
 
